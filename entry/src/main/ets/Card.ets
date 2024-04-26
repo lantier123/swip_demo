@@ -1,19 +1,10 @@
-export interface CardData {
-  name: string;
-}
-
 @Component
-export struct Card{
-   cardData : CardData
+export struct Card {
+  @Prop url: string
+
+  build() {
 
 
-  aboutToAppear(){
-    console.log(this.cardData.name)
-  }
-
-
-  build(){
 
   }
-
 }
