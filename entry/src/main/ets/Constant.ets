@@ -1,0 +1,24 @@
+
+export class Constance{
+  array: Array<String> = [
+    "https://s1.qianshouapp.cn/v2/group-images/eyJpZCI6IjRLN09GSkYzUU1YRlVXWEhOV0lESDJNSVZCSzdCQjA5IiwidyI6MTA3OSwiaCI6MTQ0NiwiZCI6MCwibXQiOiJpbWFnZS9qcGVnIiwiZGgiOjUxOTkwODE5Mjg1MDQyMjY5MTh9.jpg?format=max_960xX_p3",
+    "https://s1.qianshouapp.cn/v2/group-images/eyJpZCI6IjRLN09GSkYzUU1YRlVXWEhOV0lESDJNSVZCSzdCQjA5IiwidyI6MTA3OSwiaCI6MTQ0NiwiZCI6MCwibXQiOiJpbWFnZS9qcGVnIiwiZGgiOjUxOTkwODE5Mjg1MDQyMjY5MTh9.jpg?format=max_960xX_p3",
+    "https://s1.qianshouapp.cn/v2/group-images/eyJpZCI6IjRLN09GSkYzUU1YRlVXWEhOV0lESDJNSVZCSzdCQjA5IiwidyI6MTA3OSwiaCI6MTQ0NiwiZCI6MCwibXQiOiJpbWFnZS9qcGVnIiwiZGgiOjUxOTkwODE5Mjg1MDQyMjY5MTh9.jpg?format=max_960xX_p3",
+    "https://s1.qianshouapp.cn/v2/group-images/eyJpZCI6IjRLN09GSkYzUU1YRlVXWEhOV0lESDJNSVZCSzdCQjA5IiwidyI6MTA3OSwiaCI6MTQ0NiwiZCI6MCwibXQiOiJpbWFnZS9qcGVnIiwiZGgiOjUxOTkwODE5Mjg1MDQyMjY5MTh9.jpg?format=max_960xX_p3",
+    "https://s1.qianshouapp.cn/v2/group-images/eyJpZCI6IjRLN09GSkYzUU1YRlVXWEhOV0lESDJNSVZCSzdCQjA5IiwidyI6MTA3OSwiaCI6MTQ0NiwiZCI6MCwibXQiOiJpbWFnZS9qcGVnIiwiZGgiOjUxOTkwODE5Mjg1MDQyMjY5MTh9.jpg?format=max_960xX_p3",
+    "https://s1.qianshouapp.cn/v2/group-images/eyJpZCI6IjRLN09GSkYzUU1YRlVXWEhOV0lESDJNSVZCSzdCQjA5IiwidyI6MTA3OSwiaCI6MTQ0NiwiZCI6MCwibXQiOiJpbWFnZS9qcGVnIiwiZGgiOjUxOTkwODE5Mjg1MDQyMjY5MTh9.jpg?format=max_960xX_p3",
+    "https://s1.qianshouapp.cn/v2/group-images/eyJpZCI6IjRLN09GSkYzUU1YRlVXWEhOV0lESDJNSVZCSzdCQjA5IiwidyI6MTA3OSwiaCI6MTQ0NiwiZCI6MCwibXQiOiJpbWFnZS9qcGVnIiwiZGgiOjUxOTkwODE5Mjg1MDQyMjY5MTh9.jpg?format=max_960xX_p3",
+    "https://s1.qianshouapp.cn/v2/group-images/eyJpZCI6IjRLN09GSkYzUU1YRlVXWEhOV0lESDJNSVZCSzdCQjA5IiwidyI6MTA3OSwiaCI6MTQ0NiwiZCI6MCwibXQiOiJpbWFnZS9qcGVnIiwiZGgiOjUxOTkwODE5Mjg1MDQyMjY5MTh9.jpg?format=max_960xX_p3",
+    "https://s1.qianshouapp.cn/v2/group-images/eyJpZCI6IjRLN09GSkYzUU1YRlVXWEhOV0lESDJNSVZCSzdCQjA5IiwidyI6MTA3OSwiaCI6MTQ0NiwiZCI6MCwibXQiOiJpbWFnZS9qcGVnIiwiZGgiOjUxOTkwODE5Mjg1MDQyMjY5MTh9.jpg?format=max_960xX_p3",
+    "https://s1.qianshouapp.cn/v2/group-images/eyJpZCI6IjRLN09GSkYzUU1YRlVXWEhOV0lESDJNSVZCSzdCQjA5IiwidyI6MTA3OSwiaCI6MTQ0NiwiZCI6MCwibXQiOiJpbWFnZS9qcGVnIiwiZGgiOjUxOTkwODE5Mjg1MDQyMjY5MTh9.jpg?format=max_960xX_p3",
+    "https://s1.qianshouapp.cn/v2/group-images/eyJpZCI6IjRLN09GSkYzUU1YRlVXWEhOV0lESDJNSVZCSzdCQjA5IiwidyI6MTA3OSwiaCI6MTQ0NiwiZCI6MCwibXQiOiJpbWFnZS9qcGVnIiwiZGgiOjUxOTkwODE5Mjg1MDQyMjY5MTh9.jpg?format=max_960xX_p3",
+    "https://s1.qianshouapp.cn/v2/group-images/eyJpZCI6IjRLN09GSkYzUU1YRlVXWEhOV0lESDJNSVZCSzdCQjA5IiwidyI6MTA3OSwiaCI6MTQ0NiwiZCI6MCwibXQiOiJpbWFnZS9qcGVnIiwiZGgiOjUxOTkwODE5Mjg1MDQyMjY5MTh9.jpg?format=max_960xX_p3",
+    "https://s1.qianshouapp.cn/v2/group-images/eyJpZCI6IjRLN09GSkYzUU1YRlVXWEhOV0lESDJNSVZCSzdCQjA5IiwidyI6MTA3OSwiaCI6MTQ0NiwiZCI6MCwibXQiOiJpbWFnZS9qcGVnIiwiZGgiOjUxOTkwODE5Mjg1MDQyMjY5MTh9.jpg?format=max_960xX_p3",
+    "https://s1.qianshouapp.cn/v2/group-images/eyJpZCI6IjRLN09GSkYzUU1YRlVXWEhOV0lESDJNSVZCSzdCQjA5IiwidyI6MTA3OSwiaCI6MTQ0NiwiZCI6MCwibXQiOiJpbWFnZS9qcGVnIiwiZGgiOjUxOTkwODE5Mjg1MDQyMjY5MTh9.jpg?format=max_960xX_p3",
+    "https://s1.qianshouapp.cn/v2/group-images/eyJpZCI6IjRLN09GSkYzUU1YRlVXWEhOV0lESDJNSVZCSzdCQjA5IiwidyI6MTA3OSwiaCI6MTQ0NiwiZCI6MCwibXQiOiJpbWFnZS9qcGVnIiwiZGgiOjUxOTkwODE5Mjg1MDQyMjY5MTh9.jpg?format=max_960xX_p3",
+    "https://s1.qianshouapp.cn/v2/group-images/eyJpZCI6IjRLN09GSkYzUU1YRlVXWEhOV0lESDJNSVZCSzdCQjA5IiwidyI6MTA3OSwiaCI6MTQ0NiwiZCI6MCwibXQiOiJpbWFnZS9qcGVnIiwiZGgiOjUxOTkwODE5Mjg1MDQyMjY5MTh9.jpg?format=max_960xX_p3",
+    "https://s1.qianshouapp.cn/v2/group-images/eyJpZCI6IjRLN09GSkYzUU1YRlVXWEhOV0lESDJNSVZCSzdCQjA5IiwidyI6MTA3OSwiaCI6MTQ0NiwiZCI6MCwibXQiOiJpbWFnZS9qcGVnIiwiZGgiOjUxOTkwODE5Mjg1MDQyMjY5MTh9.jpg?format=max_960xX_p3",
+    "https://s1.qianshouapp.cn/v2/group-images/eyJpZCI6IjRLN09GSkYzUU1YRlVXWEhOV0lESDJNSVZCSzdCQjA5IiwidyI6MTA3OSwiaCI6MTQ0NiwiZCI6MCwibXQiOiJpbWFnZS9qcGVnIiwiZGgiOjUxOTkwODE5Mjg1MDQyMjY5MTh9.jpg?format=max_960xX_p3",
+    "https://s1.qianshouapp.cn/v2/group-images/eyJpZCI6IjRLN09GSkYzUU1YRlVXWEhOV0lESDJNSVZCSzdCQjA5IiwidyI6MTA3OSwiaCI6MTQ0NiwiZCI6MCwibXQiOiJpbWFnZS9qcGVnIiwiZGgiOjUxOTkwODE5Mjg1MDQyMjY5MTh9.jpg?format=max_960xX_p3",
+  ]
+}

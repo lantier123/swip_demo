@@ -1,0 +1,41 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/Users/wuxiaolong/.ohos/config/auto_debug_swip_demo_com.qianshou.myapplication_260086000100475307.cer",
+          "storePassword": "0000001BD81CBE0212A11E3317B980620C826A48BD23E6B691E074B68F431B39B6389BBE8620E7FC764A21",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001BD1EA91A964EF8D55C12168A7DED9976AAD7012C0684F949A2362E1A25AA1FD1228B32110DD2398",
+          "profile": "/Users/wuxiaolong/.ohos/config/auto_debug_swip_demo_com.qianshou.myapplication_260086000100475307.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/wuxiaolong/.ohos/config/auto_debug_swip_demo_com.qianshou.myapplication_260086000100475307.p12"
+        }
+      }
+    ],
+    "compileSdkVersion": 9,
+    "compatibleSdkVersion": 9,
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
