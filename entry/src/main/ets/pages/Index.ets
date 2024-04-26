@@ -1,8 +1,10 @@
 import display from '@ohos.display';
 import url from '@ohos.url';
 import Queue from '@ohos.util.Queue';
+import hilog from '@ohos.hilog';
 import { Card } from '../Card';
 import { Constance } from '../Constant';
+import curves from '@ohos.curves';
 
 @Entry
 @Component
@@ -12,8 +14,10 @@ struct Index {
   screenHeight: number = 0
   cardWidth: number = 300
   cardHeight: number = 700
-  preCardOffsetX1: number = 0;
-  preCardOffsetY1: number = 0;
+  preCardOffsetX1 : number = 0
+  preCardOffsetY1 : number = 0
+  initCardOffsetX1: number = 0;
+  initCardOffsetY1: number = 0;
   @State cardOffSetX1: number = 0;
   @State cardOffSetY1: number = 0;
 
@@ -24,51 +28,80 @@ struct Index {
     console.log("---->>aboutToAppear height:" + this.screenHeight)
     this.cardWidth = this.screenWidth * 0.8
     this.cardHeight = this.cardHeight * 0.8
-    this.preCardOffsetX1 = (this.screenWidth - this.cardWidth) / 2
-    this.preCardOffsetY1 = (this.screenHeight - this.cardHeight) / 2
+    this.initCardOffsetX1 = (this.screenWidth - this.cardWidth) / 2
+    this.initCardOffsetY1 = (this.screenHeight - this.cardHeight) / 2
 
 
-    console.log("---->>aboutToAppear preCardOffsetX1:" + this.preCardOffsetX1)
-    console.log("---->>aboutToAppear preCardOffsetY1:" + this.preCardOffsetY1)
-    this.cardOffSetX1 = this.preCardOffsetX1;
-    this.cardOffSetY1 = this.preCardOffsetY1
+    console.log("---->>aboutToAppear initCardOffsetX1:" + this.initCardOffsetX1)
+    console.log("---->>aboutToAppear initCardOffsetY1:" + this.initCardOffsetY1)
+    this.cardOffSetX1 = this.initCardOffsetX1;
+    this.cardOffSetY1 = this.initCardOffsetY1
 
-    Constance.arrays.forEach((data: string) => {
-      this.cards.push(data)
-    })
+    this.getData()
 
-    this.cards.reverse()
+    // Constance.arrays.forEach((data: string) => {
+    //   this.cards.push(data)
+    // })
+
+    // this.cards.reverse()
     console.log("---->>aboutToAppear cards:" + this.cards)
 
 
   }
 
+  pageNum = 0
+  getData(){
+    Constance.arrays.forEach((data: string) => {
+       const item  = Number.parseInt(data) + this.pageNum * 10
+      this.cards.push(item +"")
+    })
+    this.cards.reverse()
+    this.pageNum++
+
+  }
+
   resetImg() {
-    this.cardOffSetX1 = this.preCardOffsetX1;
-    this.cardOffSetY1 = this.preCardOffsetY1;
+    this.cardOffSetX1 = this.initCardOffsetX1;
+    this.cardOffSetY1 = this.initCardOffsetY1;
   }
 
   handlePanEnd() {
-    const distance = this.cardOffSetX1 - this.preCardOffsetX1
-    console.log("---->>handlePanEnd abs:" + Math.abs(this.cardOffSetX1 - this.preCardOffsetX1))
+    const distance = this.cardOffSetX1 - this.initCardOffsetX1
+    hilog.error(0x0000, 'testTag', "---->>handlePanEnd abs:" + Math.abs(this.cardOffSetX1 - this.initCardOffsetX1));
     if (Math.abs(distance) > vp2px(10)) {
 
       animateTo({
-        duration: 2000,
+        duration: 1000,
+        onFinish:()=>{
+        }
       }, () => {
         if (distance > 0) {
-          this.cardOffSetX1 = 1000;
+          this.cards.pop()
+          this.cardOffSetX1 = this.initCardOffsetX1;
+          this.cardOffSetY1 = this.initCardOffsetY1;
         } else {
-          this.cardOffSetX1 = -1000;
+          this.cardOffSetX1 = this.initCardOffsetX1;
+          this.cardOffSetY1 = this.initCardOffsetY1;
+          this.cards.pop()
+          // this.cardOffSetX1 = -1000;
         }
-        this.cardOffSetY1 = 0;
+        // this.cardOffSetY1 = 0;
 
       })
     } else {
-      this.resetImg();
+      // https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/arkts-spring-animation-0000001450915478-V2
+      // 弹簧曲线动画
+      animateTo({curve: curves.springMotion()},() =>{
+        this.resetImg();
+      })
+      // animateTo({duration:300},() =>{
+      //   this.resetImg();
+      // })
+
     }
 
   }
+
 
   getPositionFromIndex(index: number): Position {
     const length = this.cards.length - 1
@@ -81,11 +114,11 @@ struct Index {
     }
 
     if (index == length - 1) {
-      return { x: this.preCardOffsetX1 + 10, y: this.preCardOffsetY1 - 10 }
+      return { x: this.initCardOffsetX1 + 10, y: this.initCardOffsetY1 - 10 }
 
     }
 
-    return { x: this.preCardOffsetX1 + 20, y: this.preCardOffsetY1 - 20 }
+    return { x: this.initCardOffsetX1 + 20, y: this.initCardOffsetY1 - 20 }
   }
 
   getWidthFromIndex(index: number): number {
@@ -139,18 +172,49 @@ struct Index {
   queue: Queue<string> = new Queue()
   @State arr: string[] = []
 
+
+
+
   build() {
 
     Stack({ alignContent: Alignment.Top }) {
 
       ForEach(this.cards, (item: string, index: number) => {
-        Text(index + ',' + item)
+        Text('index:'+index + ',内容：' + item)
+
           .width(this.getWidthFromIndex(index))
           .height(this.getHeightFromIndex(index))
           .backgroundColor(this.getColorFromIndex(index))
           .borderRadius(24)
           .textAlign(TextAlign.Center)
           .position(this.getPositionFromIndex(index))
+          // .transition({ type: TransitionType.Delete, translate: { x: 2000, y: 0 } })
+          .gesture(GestureGroup(GestureMode.Exclusive,
+            PanGesture().onActionStart((event: GestureEvent) => {
+              this.preCardOffsetX1 = this.cardOffSetX1;
+              this.preCardOffsetY1 = this.cardOffSetY1;
+              console.log("---->>PanGesture onActionStart:" + JSON.stringify(event))
+            })
+              .onActionUpdate((event: GestureEvent) => {
+                // console.log("---->>PanGesture onActionUpdate:" + JSON.stringify(event))
+                if (event) {
+                  this.cardOffSetX1 = this.preCardOffsetX1 + event.offsetX;
+                  this.cardOffSetY1 = this.preCardOffsetY1 + event.offsetY;
+                }
+              })
+              .onActionEnd((event: GestureEvent) => {
+                console.log("---->>PanGesture onActionEnd:" + JSON.stringify(event))
+                this.handlePanEnd()
+                if (this.cards.length <=3) {
+                  this.getData()
+
+                }
+
+              })
+              .onActionCancel(() => {
+                console.log("---->>PanGesture onActionCancel:")
+              })
+          ))
         // Image(item)
         //   .width(this.getWidthFromIndex(index))
         //   .height(this.getHeightFromIndex(index))
