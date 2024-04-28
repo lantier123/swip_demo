@@ -80,12 +80,15 @@ struct Index {
     animateTo({
       duration: 1000,
       onFinish: () => {
+        this.cards.pop()
+        this.cardOffSetX1 = this.initCardOffsetX1;
+        this.cardOffSetY1 = this.initCardOffsetY1;
         this.getNextPageData()
       }
     }, () => {
-      this.cards.pop()
-      this.cardOffSetX1 = this.initCardOffsetX1;
-      this.cardOffSetY1 = this.initCardOffsetY1;
+      // this.cards.pop()
+      this.cardOffSetX1 = 2000;
+      // this.cardOffSetY1 = this.initCardOffsetY1;
     })
 
   }
@@ -94,12 +97,16 @@ struct Index {
     animateTo({
       duration: 1000,
       onFinish: () => {
+        this.cards.pop()
+        this.cardOffSetX1 = this.initCardOffsetX1;
+        this.cardOffSetY1 = this.initCardOffsetY1;
         this.getNextPageData()
       }
     }, () => {
-      this.cards.pop()
-      this.cardOffSetX1 = this.initCardOffsetX1;
-      this.cardOffSetY1 = this.initCardOffsetY1;
+      // this.cards.pop()
+      this.cardOffSetX1 = -2000;
+      // this.cardOffSetX1 = this.initCardOffsetX1;
+      // this.cardOffSetY1 = this.initCardOffsetY1;
     })
   }
 
@@ -111,17 +118,20 @@ struct Index {
       animateTo({
         duration: 1000,
         onFinish: () => {
+          this.cards.pop()
+          this.cardOffSetX1 = this.initCardOffsetX1;
+          this.cardOffSetY1 = this.initCardOffsetY1;
           this.getNextPageData()
         }
       }, () => {
         if (distance > 0) {
-          this.cards.pop()
-          this.cardOffSetX1 = this.initCardOffsetX1;
-          this.cardOffSetY1 = this.initCardOffsetY1;
+          // this.cards.pop()
+          this.cardOffSetX1 = 2000;
+          // this.cardOffSetY1 = this.initCardOffsetY1;
         } else {
-          this.cardOffSetX1 = this.initCardOffsetX1;
-          this.cardOffSetY1 = this.initCardOffsetY1;
-          this.cards.pop()
+          this.cardOffSetX1 = -2000;
+          // this.cardOffSetY1 = this.initCardOffsetY1;
+          // this.cards.pop()
         }
       })
     } else {
@@ -248,7 +258,7 @@ struct Index {
           .height(this.getHeightFromIndex(index))
           .borderRadius(24)
           .position(this.getPositionFromIndex(index))
-            // .transition({ type: TransitionType.Delete, translate: { x: 2000, y: 0 } })
+            // .transition({ type: TransitionType.Delete, translate: { x:  this.translateX, y: 0 } })
           .gesture(GestureGroup(GestureMode.Exclusive,
             PanGesture().onActionStart((event: GestureEvent) => {
               this.preCardOffsetX1 = this.cardOffSetX1;
