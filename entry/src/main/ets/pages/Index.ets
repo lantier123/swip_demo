@@ -142,7 +142,6 @@ struct Index {
     const length = this.cards.length - 1
     console.log("---->>getPositionFromIndex cardOffSetX1:" + this.cardOffSetX1)
     if (index == length) {
-
       return { x: this.cardOffSetX1, y: this.cardOffSetY1 }
       // return { x: 400, y: 500 }
 
@@ -152,7 +151,6 @@ struct Index {
       return { x: this.initCardOffsetX1 + 10, y: this.initCardOffsetY1 - 10 }
 
     }
-
     return { x: this.initCardOffsetX1 + 20, y: this.initCardOffsetY1 - 20 }
   }
 
@@ -232,10 +230,20 @@ struct Index {
     Stack({ alignContent: Alignment.Top }) {
 
       ForEach(this.cards, (item: string, index: number) => {
-        Text('index:' + index + ',内容：' + item)
-          // .textAlign(TextAlign.Center)
-          .backgroundColor(this.getColorFromIndex(index))
-            // Image(this.getUrlFromIndex(index))
+        // Text('index:' + index + ',内容：' + item)
+        //   .textAlign(TextAlign.Center)
+        //   .backgroundColor(this.getColorFromIndex(index))
+
+
+        // Image(item)
+        //   .width(this.getWidthFromIndex(index))
+        //   .height(this.getHeightFromIndex(index))
+        //   .borderRadius(24)
+        // .position(this.getPositionFromIndex(index))
+        // .position({ x: 0, y: 0 })
+        Button('第' + item + "张")
+
+        Image(this.getUrlFromIndex(index))
           .width(this.getWidthFromIndex(index))
           .height(this.getHeightFromIndex(index))
           .borderRadius(24)
@@ -263,22 +271,27 @@ struct Index {
                 console.log("---->>PanGesture onActionCancel:")
               })
           ))
-        // Image(item)
-        //   .width(this.getWidthFromIndex(index))
-        //   .height(this.getHeightFromIndex(index))
-        //   .borderRadius(24)
-        // .position(this.getPositionFromIndex(index))
-        // .position({ x: 0, y: 0 })
-
-
       })
 
-      Button('右滑').width(50).height(50).position({ x: 80 }).onClick((event) => {
-        this.onLike()
-      })
-      Button('左滑').width(50).height(50).position({ x: 180 }).onClick((event) => {
-        this.onDislike()
-      })
+      Image($r('app.media.recommend_like_btn_new'))
+        .width(50)
+        .height(50)
+        .position({ x: this.screenWidth - 80, y: this.screenHeight / 2 - 80 })
+        .onClick((event) => {
+          this.onLike()
+        })
+      Image($r('app.media.recommend_dislike_btn_nirvana'))
+        .width(50)
+        .height(50)
+        .position({ x: this.screenWidth - 80, y: this.screenHeight / 2 })
+        .onClick((event) => {
+          this.onDislike()
+        })
+
+
+      // Button('左滑').width(50).height(50).position({ x: this.screenWidth -80, y: this.screenHeight / 2 }).onClick((event) => {
+      //   this.onDislike()
+      // })
 
 
       //
