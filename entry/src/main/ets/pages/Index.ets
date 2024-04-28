@@ -14,8 +14,8 @@ struct Index {
   screenHeight: number = 0
   cardWidth: number = 300
   cardHeight: number = 700
-  preCardOffsetX1 : number = 0
-  preCardOffsetY1 : number = 0
+  preCardOffsetX1: number = 0
+  preCardOffsetY1: number = 0
   initCardOffsetX1: number = 0;
   initCardOffsetY1: number = 0;
   @State cardOffSetX1: number = 0;
@@ -50,16 +50,25 @@ struct Index {
   }
 
   pageNum = 0
-  getData(){
-    this.cards.reverse()
+
+  getData() {
     Constance.arrays.forEach((data: string) => {
-       const item  = Number.parseInt(data) + this.pageNum * 10
-      this.cards.push(item +"")
+      const item = Number.parseInt(data) + this.pageNum * 10
+      this.cards.push(item + "")
 
     })
     this.cards.reverse()
     this.pageNum++
 
+
+  }
+
+  getNextPageData() {
+    if (this.cards.length > 3) {
+      return
+    }
+    this.cards.reverse()
+    this.getData()
   }
 
   resetImg() {
@@ -67,11 +76,11 @@ struct Index {
     this.cardOffSetY1 = this.initCardOffsetY1;
   }
 
-  onLike(){
+  onLike() {
     animateTo({
       duration: 1000,
-      onFinish:()=>{
-        this.getData()
+      onFinish: () => {
+        this.getNextPageData()
       }
     }, () => {
       this.cards.pop()
@@ -81,11 +90,11 @@ struct Index {
 
   }
 
-  onDislike(){
+  onDislike() {
     animateTo({
       duration: 1000,
-      onFinish:()=>{
-        this.getData()
+      onFinish: () => {
+        this.getNextPageData()
       }
     }, () => {
       this.cards.pop()
@@ -101,8 +110,8 @@ struct Index {
 
       animateTo({
         duration: 1000,
-        onFinish:()=>{
-          this.getData()
+        onFinish: () => {
+          this.getNextPageData()
         }
       }, () => {
         if (distance > 0) {
@@ -118,7 +127,7 @@ struct Index {
     } else {
       // https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/arkts-spring-animation-0000001450915478-V2
       // 弹簧曲线动画
-      animateTo({curve: curves.springMotion()},() =>{
+      animateTo({ curve: curves.springMotion() }, () => {
         this.resetImg();
       })
       // animateTo({duration:300},() =>{
@@ -128,7 +137,6 @@ struct Index {
     }
 
   }
-
 
   getPositionFromIndex(index: number): Position {
     const length = this.cards.length - 1
@@ -219,23 +227,20 @@ struct Index {
 
   }
 
-
-
-
   build() {
 
     Stack({ alignContent: Alignment.Top }) {
 
       ForEach(this.cards, (item: string, index: number) => {
-        Text('index:'+index + ',内容：' + item)
-        // .textAlign(TextAlign.Center)
-        .backgroundColor(this.getColorFromIndex(index))
-        // Image(this.getUrlFromIndex(index))
+        Text('index:' + index + ',内容：' + item)
+          // .textAlign(TextAlign.Center)
+          .backgroundColor(this.getColorFromIndex(index))
+            // Image(this.getUrlFromIndex(index))
           .width(this.getWidthFromIndex(index))
           .height(this.getHeightFromIndex(index))
           .borderRadius(24)
           .position(this.getPositionFromIndex(index))
-          // .transition({ type: TransitionType.Delete, translate: { x: 2000, y: 0 } })
+            // .transition({ type: TransitionType.Delete, translate: { x: 2000, y: 0 } })
           .gesture(GestureGroup(GestureMode.Exclusive,
             PanGesture().onActionStart((event: GestureEvent) => {
               this.preCardOffsetX1 = this.cardOffSetX1;
@@ -268,10 +273,10 @@ struct Index {
 
       })
 
-      Button('右滑').width(50).height(50).position({ x: 80 }).onClick((event)=>{
+      Button('右滑').width(50).height(50).position({ x: 80 }).onClick((event) => {
         this.onLike()
       })
-      Button('左滑').width(50).height(50).position({ x: 180 }).onClick((event)=>{
+      Button('左滑').width(50).height(50).position({ x: 180 }).onClick((event) => {
         this.onDislike()
       })
 
